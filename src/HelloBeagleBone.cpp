@@ -40,6 +40,8 @@ private:
 
     };
 
+
+#if 0
 void *voidthread1( void *ptr )
     {
     Led l = Led("/sys/class/leds/beaglebone:green:usr3/brightness");
@@ -66,7 +68,31 @@ void *voidthread2( void *ptr )
 
     }
 
+#else
 
+void *voidthread1( void *ptr )
+    {
+    for (int ctr = 0; ctr < 5; ctr++)
+	{
+	printf("voidthread1 ON\n");
+	sleep(2);
+	printf("voidthread1 OFF\n");
+	sleep(2);
+	}
+    }
+
+void *voidthread2( void *ptr )
+    {
+    for (int ctr = 0; ctr < 10; ctr++)
+	{
+	printf("voidthread2 ON\n");
+	sleep(1);
+	printf("voidthread2 OFF\n");
+	sleep(1);
+	}
+    }
+
+#endif
 
 int main()
     {
@@ -94,6 +120,6 @@ int main()
     pthread_join( thread2, NULL);
 #endif
 
-    cout << "!!!Hello fdsfds!!!" << endl; // prints !!!Hello World!!!
+    cout << "Done!" << endl; // prints !!!Hello World!!!
     return 0;
     }
